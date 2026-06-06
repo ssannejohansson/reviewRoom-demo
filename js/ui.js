@@ -2,15 +2,6 @@
    UI FUNCTIONS - pure, no network, no firebase
 --------------------------------------------- */
 
-export function renderHeader(user) {
-    if (!user) return "Not logged in";
-    return `Welcome, ${user.email}`;
-}
-
-export function isFormVisible(user) {
-    return user !== null;
-}
-
 export function renderShowList(shows) {
     if (shows.length === 0) return "<p>No shows found</p>";
     return shows.map((show) => {

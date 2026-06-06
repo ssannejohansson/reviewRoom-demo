@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Google Font import -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
     <!-- Favicon -->
-     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-<link rel="manifest" href="assets/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
 </head>
 
 <body>
@@ -28,34 +28,8 @@
         <ul class="nav-links">
             <li><a id="home-link" href="#">Home</a></li>
             <li><a id="shows-link" href="#">Shows</a></li>
-            <li><a id="profile-link" href="#">Profile</a></li>
-            <li id="mobile-login"><button type="button" id="login-btn-mobile">Log in</button></li>
-            <li id="mobile-logout"><button type="button" id="logout-btn-mobile">Log out</button></li>
         </ul>
-        <span id="nav-user"></span>
-        <button type="button" id="logout-btn" class="hidden">Log out</button>
-        <button type="button" id="login-btn-nav">Log in</button>
     </nav>
-
-    <!----------------------
-    MODAL: LOGIN
-    ----------------------->
-
-    <div id="login-modal" class="modal-overlay hidden">
-        <div class="login-card">
-            <button type="button" id="close-login-modal" class="modal-close">✕</button>
-            <h1>Log in</h1>
-
-            <form id="login-form">
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button id="login-btn" type="submit">Log in</button>
-            </form>
-
-            <p id="login-error" class="error hidden"></p>
-
-        </div>
-    </div>
 
     <!----------------------
     VIEW: HOME
@@ -66,8 +40,8 @@
         <div id="hero">
             <div class="hero-bg"></div>
             <div class="hero-content">
-                <h1>Welcome back!</h1>
-                <p>Discover, review and share your favorite shows.</p>
+                <h1>Review Room</h1>
+                <p>Discover and explore reviews of your favorite shows.</p>
                 <button id="explore-btn" type="button">Explore Shows</button>
             </div>
         </div>
@@ -76,10 +50,7 @@
             <h2>Popular Shows</h2>
         </div>
 
-        <p id="loading-message" class="hidden">Loading shows...</p>
         <div id="shows-list"></div>
-        <p id="shows-error" class="error hidden"></p>
-
 
     </section>
 
@@ -130,21 +101,6 @@
         </div>
         <p id="detail-error" class="error hidden"></p>
 
-    </section>
-
-    <!----------------------
-    VIEW: PROFILE
-    ----------------------->
-    <section id="profile-view" class="hidden">
-        <div class="write-review-back">
-            <button type="button" id="back-from-profile-btn">← Back</button>
-        </div>
-        <div class="profile-card">
-            <div class="profile-avatar" id="profile-avatar"></div>
-            <h2 id="profile-email"></h2>
-            <p class="profile-uid">User ID: <span id="profile-uid"></span></p>
-            <p id="profile-error" class="error hidden"></p>
-        </div>
     </section>
 
     <!----------------------

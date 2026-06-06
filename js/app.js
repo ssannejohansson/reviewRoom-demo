@@ -1,20 +1,5 @@
-
 import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-import {
-    getAuth,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-import {
-    firebaseConfig
-} from "./firebase-config.js";
-import {
-    renderHeader,
     renderShowList,
-    renderError,
     renderReviewCount,
     renderStars,
     renderReviewCard
@@ -22,25 +7,12 @@ import {
 import { shows } from "./data.js";
 
 /* ----------------------
-FIREBASE SETUP
----------------------- */
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-/* ----------------------
 DOM ELEMENTS
 ---------------------- */
 
 const viewHome = document.getElementById("home-view");
 const viewDetail = document.getElementById("view-detail");
-const viewProfile = document.getElementById("profile-view");
-const navUser = document.getElementById("nav-user");
-const loginError = document.getElementById("login-error");
 const showList = document.getElementById("shows-list");
-const loginModal = document.getElementById("login-modal");
-const loginBtnNav = document.getElementById("login-btn-nav");
-const loginBtnNavMobile = document.getElementById("login-btn-mobile");
 
 /* ----------------------
 SHOW / HIDE VIEWS
@@ -49,90 +21,11 @@ SHOW / HIDE VIEWS
 const showView = (view) => {
     viewHome.classList.add("hidden");
     viewDetail.classList.add("hidden");
-    viewProfile.classList.add("hidden");
 
     view.classList.remove("hidden");
 
-    ["detail-error", "profile-error"].forEach(id => {
-        document.getElementById(id)?.classList.add("hidden");
-    });
+    document.getElementById("detail-error")?.classList.add("hidden");
 };
-
-/* ----------------------
-LOGIN MODAL
----------------------- */
-
-const openLoginModal = () => loginModal.classList.remove("hidden");
-const closeLoginModal = () => loginModal.classList.add("hidden");
-
-loginBtnNav.addEventListener("click", openLoginModal);
-loginBtnNavMobile.addEventListener("click", openLoginModal);
-
-document.getElementById("close-login-modal").addEventListener("click", closeLoginModal);
-
-loginModal.addEventListener("click", (e) => {
-    if (e.target === loginModal) closeLoginModal();
-});
-
-/* ----------------------
-AUTH STATE
----------------------- */
-
-onAuthStateChanged(auth, (user) => {
-    navUser.textContent = renderHeader(user);
-
-    if (user) {
-        loginBtnNav.classList.add("hidden");
-        loginBtnNavMobile.classList.add("hidden");
-        document.getElementById("logout-btn").classList.remove("hidden");
-        document.getElementById("mobile-logout").classList.remove("hidden");
-        document.getElementById("mobile-login").classList.add("hidden");
-        closeLoginModal();
-    } else {
-        loginBtnNav.classList.remove("hidden");
-        loginBtnNavMobile.classList.remove("hidden");
-        document.getElementById("logout-btn").classList.add("hidden");
-        document.getElementById("mobile-logout").classList.add("hidden");
-        document.getElementById("mobile-login").classList.remove("hidden");
-    }
-});
-
-/* ----------------------
-LOGIN
----------------------- */
-
-document.getElementById("login-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const btn = document.getElementById("login-btn");
-
-    btn.disabled = true;
-    btn.textContent = "Logging in...";
-
-    try {
-        await signInWithEmailAndPassword(auth, email, password);
-        loginError.classList.add("hidden");
-    } catch (err) {
-        loginError.textContent = renderError(err.message);
-        loginError.classList.remove("hidden");
-    } finally {
-        btn.disabled = false;
-        btn.textContent = "Log in";
-    }
-});
-
-/* ----------------------
-LOGOUT
----------------------- */
-
-const handleLogout = async () => {
-    await signOut(auth);
-};
-
-document.getElementById("logout-btn").addEventListener("click", handleLogout);
-document.getElementById("logout-btn-mobile").addEventListener("click", handleLogout);
 
 /* ----------------------
 HOME NAVIGATION
@@ -247,28 +140,3 @@ const loadShows = () => {
 };
 
 loadShows();
-
-/* ----------------------
-PROFILE
----------------------- */
-
-document.getElementById("profile-link").addEventListener("click", (e) => {
-    e.preventDefault();
-    const user = auth.currentUser;
-
-    if (!user) {
-        openLoginModal();
-        return;
-    }
-
-    document.getElementById("profile-avatar").textContent =
-        user.email.charAt(0).toUpperCase();
-    document.getElementById("profile-email").textContent = user.email;
-    document.getElementById("profile-uid").textContent = user.uid;
-
-    showView(viewProfile);
-});
-
-document.getElementById("back-from-profile-btn").addEventListener("click", () => {
-    showView(viewHome);
-});

@@ -17,14 +17,11 @@ npm run dev
 
 Then open [http://localhost:5500](http://localhost:5500).
 
-> Firebase Authentication requires the site to be served over HTTP. Opening `index.html` directly as a file won't work for login.
-
 ## Deploy to GitHub Pages
 
 1. Push the repository to GitHub
 2. Go to **Settings → Pages**
 3. Set source to **Deploy from a branch**, select `main` and `/ (root)`
-4. Once deployed, add your GitHub Pages URL (e.g. `yourusername.github.io`) to the Firebase Console under **Authentication → Settings → Authorized domains**
 
 ## Project structure
 
@@ -36,7 +33,6 @@ Then open [http://localhost:5500](http://localhost:5500).
 ├── js/
 │   ├── app.js            # main logic and event handlers
 │   ├── data.js           # all show and review data
-│   ├── firebase-config.js
 │   └── ui.js             # pure render functions
 └── assets/
     ├── site.webmanifest
@@ -48,4 +44,4 @@ Then open [http://localhost:5500](http://localhost:5500).
 - Browse 40 TV shows with poster images, genre, year, and ratings
 - Click any show to read its reviews and average star rating
 - Responsive layout with mobile navigation
-# reviewRoom-demo
+
