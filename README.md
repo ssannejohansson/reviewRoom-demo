@@ -7,7 +7,6 @@ A static website for discovering and reading reviews of TV shows. Browse 40 cura
 ## Tech stack
 
 - Vanilla HTML, CSS, and JavaScript (ES modules, no build step)
-- Firebase Authentication (email/password login)
 - Deployed on GitHub Pages
 
 ## Run locally
@@ -48,5 +47,5 @@ Then open [http://localhost:5500](http://localhost:5500).
 
 - Browse 40 TV shows with poster images, genre, year, and ratings
 - Click any show to read its reviews and average star rating
-- Log in with Firebase to view your profile
 - Responsive layout with mobile navigation
+# reviewRoom-demo
