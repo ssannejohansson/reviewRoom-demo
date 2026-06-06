@@ -1,0 +1,6 @@
+{
+  "name": "review-room",
+  "scripts": {
+    "dev": "npx serve . -l 5500"
+  }
+}

@@ -1,0 +1,851 @@
+/* ------------------------------------------
+CSS VARIABLES
+--------------------------------------------- */
+:root {
+    --bg: #141414;
+    --surface: #1f1f1f;
+    --red: #e50914;
+    --red-hover: #b20710;
+    --text: #ffffff;
+    --text-muted: #b3b3b3;
+    --input-bg: #333333;
+    --radius: 4px;
+}
+
+
+/* ------------------------------------------
+RESET & BASE
+--------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "Helvetica Neue", sans-serif;
+    min-height: 100vh;
+}
+
+
+/* ------------------------------------------
+UTILITY
+--------------------------------------------- */
+.hidden {
+    display: none !important;
+}
+
+.error {
+    color: var(--red);
+    font-size: 0.875rem;
+    margin-top: 8px;
+}
+
+/* ------------------------------------------
+NAVBAR
+--------------------------------------------- */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 16px 48px;
+}
+
+.logo {
+    color: var(--red);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+    margin-right: auto;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--text);
+}
+
+#nav-user {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+#logout-btn,
+#login-btn-nav {
+    background: none;
+    border: 1px solid var(--text-muted);
+    color: var(--text-muted);
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+#logout-btn:hover,
+#login-btn-nav:hover {
+    border-color: var(--text);
+    color: var(--text);
+    background: none;
+}
+
+/* ------------------------------------------
+RESPONSIVE NAVBAR
+--------------------------------------------- */
+#hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.5rem;
+    padding: 0;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+#hamburger:hover {
+    background: none;
+}
+
+#mobile-logout, 
+#mobile-login {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+        padding: 16px 24px;
+        gap: 0;
+    }
+
+    #hamburger {
+        display: block;
+        margin-left: auto;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        margin-top: 12px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 12px 0;
+        border-top: none;
+        color: var(--text-muted);
+    }
+
+    #nav-user {
+        display: none;
+    }
+
+    #logout-btn,
+    #login-btn-nav {
+        display: none;
+    }
+
+    #mobile-logout,
+    #mobile-login {
+        display: block;
+        margin-top: 8px;
+    }
+
+    #logout-btn-mobile,
+    #login-btn-mobile {
+        background: none;
+        border: 1px solid var(--text-muted);
+        color: var(--text-muted);
+        padding: 6px 16px;
+        font-size: 0.85rem;
+        font-weight: 400;
+        width: 100%;
+    }
+}
+
+/* ------------------------------------------
+BUTTONS
+--------------------------------------------- */
+button {
+    background-color: var(--red);
+    color: var(--text);
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--red-hover);
+}
+
+/* ------------------------------------------
+INPUTS
+--------------------------------------------- */
+input,
+textarea {
+    background-color: var(--input-bg);
+    color: var(--text);
+    border: none;
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-muted);
+}
+
+textarea {
+    height: 120px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+/* ------------------------------------------
+VIEW: LOGIN
+--------------------------------------------- */
+
+.login-card {
+    position: relative;
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 4px;
+    padding: 60px 68px 40px;
+    width: 450px;
+    z-index: 1;
+}
+
+.login-card h1 {
+    font-size: 2rem;
+    margin-bottom: 28px;
+}
+
+.login-card input {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.login-card button[type="submit"] {
+    width: 100%;
+    padding: 16px;
+    font-size: 1rem;
+    margin-top: 8px;
+}
+
+#login-error {
+    margin-top: 16px;
+}
+
+.demo-credentials {
+    margin-top: 24px;
+    padding: 12px 16px;
+    border: 1px solid #333;
+    border-radius: var(--radius);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+/* ------------------------------------------
+LOGIN MODAL
+--------------------------------------------- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    background: none;
+    color: var(--text);
+}
+
+/* ------------------------------------------
+VIEW: HOME
+--------------------------------------------- */
+#home-view {
+    padding-bottom: 60px;
+}
+
+/* ------------------------------------------
+HERO
+--------------------------------------------- */
+#hero {
+    position: relative;
+    height: 420px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 40%, transparent),
+        linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%),
+        #1a1a2e;
+    display: flex;
+    align-items: center;
+    padding: 0 80px;
+    margin-bottom: 40px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.hero-content p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 28px;
+    line-height: 1.5;
+}
+
+#explore-btn {
+    padding: 12px 28px;
+    font-size: 1rem;
+}
+
+/* ------------------------------------------
+HERO BACKGROUND COLLAGE
+--------------------------------------------- */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-bg img {
+    flex: 1;
+    object-fit: cover;
+    filter: blur(6px) brightness(0.4);
+    transform: scale(1.05);
+}
+
+/* ------------------------------------------
+SECTION HEADER
+--------------------------------------------- */
+.section-header {
+    padding: 0 48px;
+    margin-bottom: 16px;
+}
+
+.section-header h2 {
+    font-size: 1.4rem;
+}
+
+/* ------------------------------------------
+SHOW GRID
+--------------------------------------------- */
+#shows-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+    padding: 0 48px;
+    margin-bottom: 40px;
+}
+
+.show-card {
+    background-color: var(--surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.show-card:hover {
+    transform: scale(1.05);
+}
+
+.show-card__img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    background-color: #333;
+    display: block;
+}
+
+.show-card__info {
+    padding: 8px 10px 10px;
+}
+
+.show-card__title {
+    font-size: 0.85rem;
+    color: var(--text);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.show-card__rating {
+    font-size: 0.78rem;
+    color: var(--red);
+    font-weight: 600;
+}
+
+.show-card__rating--none {
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* ------------------------------------------
+LOADING
+--------------------------------------------- */
+#loading-message {
+    color: var(--text-muted);
+    padding: 40px 48px;
+    font-size: 0.9rem;
+}
+
+/* ------------------------------------------
+VIEW: DETAIL
+--------------------------------------------- */
+#view-detail {
+    padding-bottom: 60px;
+}
+
+/* ------------------------------------------
+BREADCRUMB
+--------------------------------------------- */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 48px 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.breadcrumb-link {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 0;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.breadcrumb-link:hover {
+    background: none;
+    color: var(--text);
+    text-decoration: underline;
+}
+
+.breadcrumb-sep {
+    color: var(--text-muted);
+}
+
+/* ------------------------------------------
+DETAIL HERO
+--------------------------------------------- */
+.detail-hero {
+    display: flex;
+    gap: 40px;
+    padding: 32px 48px 40px;
+}
+
+.detail-poster {
+    width: 200px;
+    flex-shrink: 0;
+    border-radius: var(--radius);
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .detail-hero {
+        flex-direction: column;
+        padding: 24px 24px 32px;
+        gap: 20px;
+    }
+
+    .detail-poster {
+        width: 140px;
+    }
+}
+
+.detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.detail-info h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.detail-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.meta-dot {
+    color: var(--text-muted);
+}
+
+.detail-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#detail-stars {
+    color: gold;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+.review-count-label,
+#detail-review-count {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+#detail-description {
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 500px;
+}
+
+.btn-outline {
+    align-self: flex-start;
+    background: none;
+    border: 1px solid var(--text);
+    color: var(--text);
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ------------------------------------------
+TABS
+--------------------------------------------- */
+.tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--surface);
+    padding: 0 48px;
+    margin-bottom: 32px;
+}
+
+.tab {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-muted);
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: -2px;
+    letter-spacing: 0.5px;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.tab:hover {
+    background: none;
+    color: var(--text);
+}
+
+.tab.active {
+    color: var(--text);
+    border-bottom-color: var(--red);
+    background: none;
+}
+
+/* ------------------------------------------
+TAB CONTENT
+--------------------------------------------- */
+.tab-content {
+    padding: 0 48px;
+}
+
+.reviews-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.reviews-header h3 {
+    font-size: 1.2rem;
+}
+
+.no-content {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 24px 0;
+}
+
+.write-review-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.login-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* ------------------------------------------
+REVIEW CARDS
+--------------------------------------------- */
+.review-card {
+    background-color: var(--surface);
+    padding: 20px;
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+}
+
+.review-card__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.review-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--red);
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.review-card__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.review-author {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.review-stars {
+    color: gold;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.review-date {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.review-title {
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.review-comment {
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* ------------------------------------------
+VIEW: ADD SHOW
+--------------------------------------------- */
+#add-show-view {
+    min-height: 100vh;
+    padding: 32px 48px;
+}
+
+/* ------------------------------------------
+VIEW: WRITE REVIEW
+--------------------------------------------- */
+#write-review-view {
+    min-height: 100vh;
+    background-color: var(--bg);
+    padding: 32px 48px;
+}
+
+.write-review-back button {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 0;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 40px;
+}
+
+.write-review-back button:hover {
+    background: none;
+    color: var(--text);
+}
+
+.write-review-card {
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.write-review-card h2 {
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+#review-show-name {
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 1rem;
+    margin-top: -8px;
+}
+
+.field-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: -8px;
+}
+
+.field-optional {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* ------------------------------------------
+STAR PICKER
+--------------------------------------------- */
+.star-picker {
+    display: flex;
+    gap: 8px;
+    font-size: 2rem;
+    margin-bottom: 4px;
+}
+
+.star {
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.1s;
+}
+
+.star:hover,
+.star.active {
+    color: gold;
+}
+
+.write-review-card button[type="button"] {
+    margin-top: 8px;
+    padding: 16px;
+    font-size: 1rem;
+}
+
+/* ------------------------------------------
+VIEW: PROFILE
+--------------------------------------------- */
+#profile-view {
+    min-height: 100vh;
+    padding: 32px 48px;
+}
+
+.profile-card {
+    max-width: 480px;
+    margin: 60px auto 0;
+    background-color: var(--surface);
+    border-radius: var(--radius);
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--red);
+    color: var(--text);
+    font-size: 2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.profile-card h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.profile-uid {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Room</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google Font import -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="manifest" href="assets/site.webmanifest">
+</head>
+
+<body>
+    <!----------------------
+    NAVBAR
+    ----------------------->
+    <nav id="navbar">
+        <a id="nav-logo" href="#" class="logo">Review Room</a>
+        <button id="hamburger" aria-label="Toggle menu">&#9776;</button>
+        <ul class="nav-links">
+            <li><a id="home-link" href="#">Home</a></li>
+            <li><a id="shows-link" href="#">Shows</a></li>
+            <li><a id="profile-link" href="#">Profile</a></li>
+            <li id="mobile-login"><button type="button" id="login-btn-mobile">Log in</button></li>
+            <li id="mobile-logout"><button type="button" id="logout-btn-mobile">Log out</button></li>
+        </ul>
+        <span id="nav-user"></span>
+        <button type="button" id="logout-btn" class="hidden">Log out</button>
+        <button type="button" id="login-btn-nav">Log in</button>
+    </nav>
+
+    <!----------------------
+    MODAL: LOGIN
+    ----------------------->
+
+    <div id="login-modal" class="modal-overlay hidden">
+        <div class="login-card">
+            <button type="button" id="close-login-modal" class="modal-close">✕</button>
+            <h1>Log in</h1>
+
+            <form id="login-form">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button id="login-btn" type="submit">Log in</button>
+            </form>
+
+            <p id="login-error" class="error hidden"></p>
+
+        </div>
+    </div>
+
+    <!----------------------
+    VIEW: HOME
+    ----------------------->
+
+    <section id="home-view">
+
+        <div id="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1>Welcome back!</h1>
+                <p>Discover, review and share your favorite shows.</p>
+                <button id="explore-btn" type="button">Explore Shows</button>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Popular Shows</h2>
+        </div>
+
+        <p id="loading-message" class="hidden">Loading shows...</p>
+        <div id="shows-list"></div>
+        <p id="shows-error" class="error hidden"></p>
+
+
+    </section>
+
+    <!----------------------
+    VIEW: SHOW DETAILS
+    ----------------------->
+    <section id="view-detail" class="hidden">
+
+        <div class="breadcrumb">
+            <button type="button" id="back-btn" class="breadcrumb-link">Home</button>
+            <span class="breadcrumb-sep">›</span>
+            <span>Shows</span>
+            <span class="breadcrumb-sep">›</span>
+            <span id="breadcrumb-title"></span>
+        </div>
+
+        <div class="detail-hero">
+            <img id="detail-poster" class="detail-poster" alt="">
+            <div class="detail-info">
+                <h2 id="detail-title"></h2>
+                <div class="detail-meta">
+                    <span id="detail-genre"></span>
+                    <span class="meta-dot">·</span>
+                    <span id="detail-year"></span>
+                </div>
+                <div class="detail-rating">
+                    <span id="detail-stars"></span>
+                    <span id="detail-review-count"></span>
+                </div>
+                <p id="detail-description"></p>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button type="button" class="tab active" data-tab="reviews">Reviews</button>
+            <button type="button" class="tab" data-tab="trailers">Trailers &amp; More</button>
+        </div>
+
+        <div id="tab-reviews" class="tab-content">
+            <div class="reviews-header">
+                <h3>Reviews</h3>
+            </div>
+            <div id="review-list"></div>
+        </div>
+
+        <div id="tab-trailers" class="tab-content hidden">
+            <p class="no-content">No trailers available.</p>
+        </div>
+        <p id="detail-error" class="error hidden"></p>
+
+    </section>
+
+    <!----------------------
+    VIEW: PROFILE
+    ----------------------->
+    <section id="profile-view" class="hidden">
+        <div class="write-review-back">
+            <button type="button" id="back-from-profile-btn">← Back</button>
+        </div>
+        <div class="profile-card">
+            <div class="profile-avatar" id="profile-avatar"></div>
+            <h2 id="profile-email"></h2>
+            <p class="profile-uid">User ID: <span id="profile-uid"></span></p>
+            <p id="profile-error" class="error hidden"></p>
+        </div>
+    </section>
+
+    <!----------------------
+    SCRIPTS
+    ----------------------->
+    <script type="module" src="js/app.js"></script>
+
+</body>
+</html>
