@@ -19,89 +19,94 @@
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!----------------------
     NAVBAR
     ----------------------->
-    <nav id="navbar">
+    <nav id="navbar" aria-label="Main navigation">
         <a id="nav-logo" href="#" class="logo">Review Room</a>
-        <button id="hamburger" aria-label="Toggle menu">&#9776;</button>
+        <button id="hamburger" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
         <ul class="nav-links">
             <li><a id="home-link" href="#">Home</a></li>
             <li><a id="shows-link" href="#">Shows</a></li>
         </ul>
     </nav>
 
-    <!----------------------
-    VIEW: HOME
-    ----------------------->
+    <main id="main-content">
 
-    <section id="home-view">
+        <!----------------------
+        VIEW: HOME
+        ----------------------->
+        <section id="home-view" aria-label="Home">
 
-        <div id="hero">
-            <div class="hero-bg"></div>
-            <div class="hero-content">
-                <h1>Review Room</h1>
-                <p>Discover and explore reviews of your favorite shows.</p>
-                <button id="explore-btn" type="button">Explore Shows</button>
-            </div>
-        </div>
-
-        <div class="section-header">
-            <h2>Popular Shows</h2>
-        </div>
-
-        <div id="shows-list"></div>
-
-    </section>
-
-    <!----------------------
-    VIEW: SHOW DETAILS
-    ----------------------->
-    <section id="view-detail" class="hidden">
-
-        <div class="breadcrumb">
-            <button type="button" id="back-btn" class="breadcrumb-link">Home</button>
-            <span class="breadcrumb-sep">›</span>
-            <span>Shows</span>
-            <span class="breadcrumb-sep">›</span>
-            <span id="breadcrumb-title"></span>
-        </div>
-
-        <div class="detail-hero">
-            <img id="detail-poster" class="detail-poster" alt="">
-            <div class="detail-info">
-                <h2 id="detail-title"></h2>
-                <div class="detail-meta">
-                    <span id="detail-genre"></span>
-                    <span class="meta-dot">·</span>
-                    <span id="detail-year"></span>
+            <div id="hero">
+                <div class="hero-bg" aria-hidden="true"></div>
+                <div class="hero-content">
+                    <h1>Review Room</h1>
+                    <p>Discover and explore reviews of your favorite shows.</p>
+                    <button id="explore-btn" type="button">Explore Shows</button>
                 </div>
-                <div class="detail-rating">
-                    <span id="detail-stars"></span>
-                    <span id="detail-review-count"></span>
+            </div>
+
+            <div class="section-header">
+                <h2>Popular Shows</h2>
+            </div>
+
+            <div id="shows-list"></div>
+
+        </section>
+
+        <!----------------------
+        VIEW: SHOW DETAILS
+        ----------------------->
+        <section id="view-detail" class="hidden" aria-label="Show details">
+
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <button type="button" id="back-btn" class="breadcrumb-link">Home</button>
+                <span class="breadcrumb-sep" aria-hidden="true">›</span>
+                <span>Shows</span>
+                <span class="breadcrumb-sep" aria-hidden="true">›</span>
+                <span id="breadcrumb-title"></span>
+            </nav>
+
+            <div class="detail-hero">
+                <img id="detail-poster" class="detail-poster" alt="">
+                <div class="detail-info">
+                    <h2 id="detail-title" tabindex="-1"></h2>
+                    <div class="detail-meta">
+                        <span id="detail-genre"></span>
+                        <span class="meta-dot" aria-hidden="true">·</span>
+                        <span id="detail-year"></span>
+                    </div>
+                    <div class="detail-rating">
+                        <span id="detail-stars" aria-label=""></span>
+                        <span id="detail-review-count"></span>
+                    </div>
+                    <p id="detail-description"></p>
                 </div>
-                <p id="detail-description"></p>
             </div>
-        </div>
 
-        <div class="tabs">
-            <button type="button" class="tab active" data-tab="reviews">Reviews</button>
-            <button type="button" class="tab" data-tab="trailers">Trailers &amp; More</button>
-        </div>
-
-        <div id="tab-reviews" class="tab-content">
-            <div class="reviews-header">
-                <h3>Reviews</h3>
+            <div class="tabs" role="tablist" aria-label="Show content">
+                <button type="button" class="tab active" role="tab" aria-selected="true" aria-controls="tab-reviews" id="tab-btn-reviews" data-tab="reviews">Reviews</button>
+                <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="tab-trailers" id="tab-btn-trailers" data-tab="trailers">Trailers &amp; More</button>
             </div>
-            <div id="review-list"></div>
-        </div>
 
-        <div id="tab-trailers" class="tab-content hidden">
-            <p class="no-content">No trailers available.</p>
-        </div>
-        <p id="detail-error" class="error hidden"></p>
+            <div id="tab-reviews" role="tabpanel" aria-labelledby="tab-btn-reviews" class="tab-content">
+                <div class="reviews-header">
+                    <h3>Reviews</h3>
+                </div>
+                <div id="review-list"></div>
+            </div>
 
-    </section>
+            <div id="tab-trailers" role="tabpanel" aria-labelledby="tab-btn-trailers" class="tab-content hidden">
+                <p class="no-content">No trailers available.</p>
+            </div>
+            <p id="detail-error" class="error hidden" role="alert"></p>
+
+        </section>
+
+    </main>
 
     <!----------------------
     SCRIPTS

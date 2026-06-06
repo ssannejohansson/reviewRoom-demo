@@ -56,7 +56,9 @@ HAMBURGER MENU (MOBILE)
 ---------------------- */
 
 document.getElementById("hamburger").addEventListener("click", () => {
-    document.querySelector(".nav-links").classList.toggle("open");
+    const navLinks = document.querySelector(".nav-links");
+    const isOpen = navLinks.classList.toggle("open");
+    document.getElementById("hamburger").setAttribute("aria-expanded", isOpen);
 });
 
 /* ----------------------
@@ -68,7 +70,7 @@ const renderHeroBg = (data) => {
     if (!bg) return;
 
     const picks = data.filter(s => s.imageUrl).slice(-6);
-    bg.innerHTML = picks.map(s => `<img src="${s.imageUrl}" alt="${s.title}">`).join("");
+    bg.innerHTML = picks.map(s => `<img src="${s.imageUrl}" alt="">`).join("");
 };
 
 /* ----------------------
@@ -77,7 +79,9 @@ TABS
 
 const activateTab = (tabName) => {
     document.querySelectorAll(".tab").forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.tab === tabName);
+        const isActive = btn.dataset.tab === tabName;
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-selected", isActive);
     });
     document.querySelectorAll(".tab-content").forEach((content) => {
         content.classList.add("hidden");
@@ -110,13 +114,19 @@ const loadShowDetail = (id) => {
     document.getElementById("detail-poster").src = show.imageUrl;
     document.getElementById("detail-poster").alt = show.title;
     document.getElementById("breadcrumb-title").textContent = show.title;
-    document.getElementById("detail-title").textContent = show.title;
     document.getElementById("detail-genre").textContent = show.genre;
     document.getElementById("detail-year").textContent = show.year;
-    document.getElementById("detail-stars").textContent = renderStars(avgRating);
+    document.getElementById("detail-description").textContent = show.description;
     document.getElementById("detail-review-count").textContent =
         `(${renderReviewCount(show.reviews?.length ?? 0)})`;
-    document.getElementById("detail-description").textContent = show.description;
+
+    const starsEl = document.getElementById("detail-stars");
+    starsEl.textContent = renderStars(avgRating);
+    starsEl.setAttribute("aria-label", `${avgRating.toFixed(1)} out of 5 stars`);
+
+    const titleEl = document.getElementById("detail-title");
+    titleEl.textContent = show.title;
+    titleEl.focus();
 
     document.getElementById("review-list").innerHTML =
         show.reviews?.length > 0

@@ -9,16 +9,16 @@ export function renderShowList(shows) {
             ? (show.reviews.reduce((sum, r) => sum + r.rating, 0) / show.reviews.length).toFixed(1)
             : null;
         const ratingHtml = avg
-            ? `<span class="show-card__rating">★ ${avg}</span>`
+            ? `<span class="show-card__rating" aria-label="${avg} out of 5 stars">★ ${avg}</span>`
             : `<span class="show-card__rating show-card__rating--none">No reviews</span>`;
         return `
-        <div class="show-card" data-id="${show.id}">
-          <img class="show-card__img" src="${show.imageUrl}" alt="${show.title}">
+        <button type="button" class="show-card" data-id="${show.id}" aria-label="${show.title}">
+          <img class="show-card__img" src="${show.imageUrl}" alt="">
           <div class="show-card__info">
-            <p class="show-card__title">${show.title}</p>
+            <span class="show-card__title">${show.title}</span>
             ${ratingHtml}
           </div>
-        </div>`;
+        </button>`;
     }).join("");
 }
 
@@ -57,10 +57,10 @@ export function renderReviewCard(review) {
     return `
     <div class="review-card">
       <div class="review-card__header">
-        <div class="review-avatar">${initial}</div>
+        <div class="review-avatar" aria-hidden="true">${initial}</div>
         <div class="review-card__meta">
           <span class="review-author">${review.author}</span>
-          <span class="review-stars">${stars}</span>
+          <span class="review-stars" aria-label="${review.rating} out of 5 stars">${stars}</span>
         </div>
         <span class="review-date">${date}</span>
       </div>

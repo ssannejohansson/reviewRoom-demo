@@ -38,9 +38,37 @@ UTILITY
 }
 
 .error {
-    color: var(--red);
+    color: #ff4444;
     font-size: 0.875rem;
     margin-top: 8px;
+}
+
+/* ------------------------------------------
+SKIP LINK
+--------------------------------------------- */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: var(--red);
+    color: var(--text);
+    padding: 8px 16px;
+    z-index: 999;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ------------------------------------------
+FOCUS
+--------------------------------------------- */
+:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 2px;
 }
 
 /* ------------------------------------------
@@ -84,28 +112,6 @@ nav {
     color: var(--text);
 }
 
-#nav-user {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-#logout-btn,
-#login-btn-nav {
-    background: none;
-    border: 1px solid var(--text-muted);
-    color: var(--text-muted);
-    padding: 6px 16px;
-    font-size: 0.85rem;
-    font-weight: 400;
-}
-
-#logout-btn:hover,
-#login-btn-nav:hover {
-    border-color: var(--text);
-    color: var(--text);
-    background: none;
-}
-
 /* ------------------------------------------
 RESPONSIVE NAVBAR
 --------------------------------------------- */
@@ -122,11 +128,6 @@ RESPONSIVE NAVBAR
 
 #hamburger:hover {
     background: none;
-}
-
-#mobile-logout, 
-#mobile-login {
-    display: none;
 }
 
 @media (max-width: 768px) {
@@ -158,32 +159,6 @@ RESPONSIVE NAVBAR
         border-top: none;
         color: var(--text-muted);
     }
-
-    #nav-user {
-        display: none;
-    }
-
-    #logout-btn,
-    #login-btn-nav {
-        display: none;
-    }
-
-    #mobile-logout,
-    #mobile-login {
-        display: block;
-        margin-top: 8px;
-    }
-
-    #logout-btn-mobile,
-    #login-btn-mobile {
-        background: none;
-        border: 1px solid var(--text-muted);
-        color: var(--text-muted);
-        padding: 6px 16px;
-        font-size: 0.85rem;
-        font-weight: 400;
-        width: 100%;
-    }
 }
 
 /* ------------------------------------------
@@ -203,108 +178,6 @@ button {
 
 button:hover {
     background-color: var(--red-hover);
-}
-
-/* ------------------------------------------
-INPUTS
---------------------------------------------- */
-input,
-textarea {
-    background-color: var(--input-bg);
-    color: var(--text);
-    border: none;
-    border-radius: var(--radius);
-    padding: 12px 16px;
-    font-size: 1rem;
-    width: 100%;
-    margin-bottom: 12px;
-}
-
-input::placeholder,
-textarea::placeholder {
-    color: var(--text-muted);
-}
-
-textarea {
-    height: 120px;
-    resize: vertical;
-    font-family: inherit;
-}
-
-/* ------------------------------------------
-VIEW: LOGIN
---------------------------------------------- */
-
-.login-card {
-    position: relative;
-    background: rgba(20, 20, 20, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 4px;
-    padding: 60px 68px 40px;
-    width: 450px;
-    z-index: 1;
-}
-
-.login-card h1 {
-    font-size: 2rem;
-    margin-bottom: 28px;
-}
-
-.login-card input {
-    width: 100%;
-    margin-bottom: 16px;
-}
-
-.login-card button[type="submit"] {
-    width: 100%;
-    padding: 16px;
-    font-size: 1rem;
-    margin-top: 8px;
-}
-
-#login-error {
-    margin-top: 16px;
-}
-
-.demo-credentials {
-    margin-top: 24px;
-    padding: 12px 16px;
-    border: 1px solid #333;
-    border-radius: var(--radius);
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    line-height: 1.6;
-}
-
-/* ------------------------------------------
-LOGIN MODAL
---------------------------------------------- */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.75);
-    z-index: 200;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    font-size: 1.2rem;
-    padding: 4px;
-    cursor: pointer;
-}
-
-.modal-close:hover {
-    background: none;
-    color: var(--text);
 }
 
 /* ------------------------------------------
@@ -401,10 +274,16 @@ SHOW GRID
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.2s;
+    border: none;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+    display: block;
 }
 
 .show-card:hover {
     transform: scale(1.05);
+    background-color: var(--surface);
 }
 
 .show-card__img {
@@ -420,6 +299,7 @@ SHOW GRID
 }
 
 .show-card__title {
+    display: block;
     font-size: 0.85rem;
     color: var(--text);
     margin-bottom: 4px;
@@ -430,22 +310,13 @@ SHOW GRID
 
 .show-card__rating {
     font-size: 0.78rem;
-    color: var(--red);
+    color: gold;
     font-weight: 600;
 }
 
 .show-card__rating--none {
     color: var(--text-muted);
     font-weight: 400;
-}
-
-/* ------------------------------------------
-LOADING
---------------------------------------------- */
-#loading-message {
-    color: var(--text-muted);
-    padding: 40px 48px;
-    font-size: 0.9rem;
 }
 
 /* ------------------------------------------
@@ -561,20 +432,6 @@ DETAIL HERO
     max-width: 500px;
 }
 
-.btn-outline {
-    align-self: flex-start;
-    background: none;
-    border: 1px solid var(--text);
-    color: var(--text);
-    padding: 8px 20px;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.btn-outline:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
 /* ------------------------------------------
 TABS
 --------------------------------------------- */
@@ -633,18 +490,6 @@ TAB CONTENT
     color: var(--text-muted);
     font-size: 0.9rem;
     padding: 24px 0;
-}
-
-.write-review-action {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-}
-
-.login-hint {
-    font-size: 0.8rem;
-    color: var(--text-muted);
 }
 
 /* ------------------------------------------
@@ -711,141 +556,4 @@ REVIEW CARDS
     color: var(--text-muted);
     line-height: 1.6;
     font-size: 0.95rem;
-}
-
-/* ------------------------------------------
-VIEW: ADD SHOW
---------------------------------------------- */
-#add-show-view {
-    min-height: 100vh;
-    padding: 32px 48px;
-}
-
-/* ------------------------------------------
-VIEW: WRITE REVIEW
---------------------------------------------- */
-#write-review-view {
-    min-height: 100vh;
-    background-color: var(--bg);
-    padding: 32px 48px;
-}
-
-.write-review-back button {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    padding: 0;
-    font-size: 0.9rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 40px;
-}
-
-.write-review-back button:hover {
-    background: none;
-    color: var(--text);
-}
-
-.write-review-card {
-    max-width: 480px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.write-review-card h2 {
-    font-size: 1.8rem;
-    text-align: center;
-}
-
-#review-show-name {
-    color: var(--text-muted);
-    text-align: center;
-    font-size: 1rem;
-    margin-top: -8px;
-}
-
-.field-label {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-bottom: -8px;
-}
-
-.field-optional {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-}
-
-/* ------------------------------------------
-STAR PICKER
---------------------------------------------- */
-.star-picker {
-    display: flex;
-    gap: 8px;
-    font-size: 2rem;
-    margin-bottom: 4px;
-}
-
-.star {
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: color 0.1s;
-}
-
-.star:hover,
-.star.active {
-    color: gold;
-}
-
-.write-review-card button[type="button"] {
-    margin-top: 8px;
-    padding: 16px;
-    font-size: 1rem;
-}
-
-/* ------------------------------------------
-VIEW: PROFILE
---------------------------------------------- */
-#profile-view {
-    min-height: 100vh;
-    padding: 32px 48px;
-}
-
-.profile-card {
-    max-width: 480px;
-    margin: 60px auto 0;
-    background-color: var(--surface);
-    border-radius: var(--radius);
-    padding: 48px 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-
-.profile-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: var(--red);
-    color: var(--text);
-    font-size: 2rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 8px;
-}
-
-.profile-card h2 {
-    font-size: 1.3rem;
-    font-weight: 600;
-}
-
-.profile-uid {
-    font-size: 0.8rem;
-    color: var(--text-muted);
 }
